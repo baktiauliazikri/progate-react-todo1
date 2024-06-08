@@ -20,12 +20,31 @@ function App() {
     },
   ])
 
+  const toggleCompleted = (todoId) => {
+    const updatedTodos = todos.map((todo) => {
+      if (todo.id === todoId) {
+        todo.completed = !todo.completed
+      }
+      return todo
+    })
+    setTodos(updatedTodos)
+  }
+
+  const deleteTodo = (todoId) => {
+    const updatedTodos = todos.filter((todo) => {
+      if (todo.id !== todoId) {
+        return todo
+      }
+    })
+    setTodos(updatedTodos)
+  };
+
   console.log(todos)
 
   return (
     <div style={styles.container}>
       <h1 style={styles.title}>My Todo List</h1>
-      <Todos todos={todos} />
+      <Todos todos={todos} toggleCompleted={toggleCompleted} deleteTodo={deleteTodo} />
     </div>
   )
 }
