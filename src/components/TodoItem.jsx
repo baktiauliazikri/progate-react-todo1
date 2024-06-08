@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { TodoContext } from '../App'
 
-const TodoItem = ({ todo, toggleCompleted,deleteTodo }) => {
+const TodoItem = ({ todo }) => {
+
+    const { toggleCompleted, deleteTodo } = useContext(TodoContext)
     const getTodoTitleStyle = () => {
         if (todo.completed === true) {
             return { textDecoration: 'line-through' }
@@ -22,7 +25,7 @@ const TodoItem = ({ todo, toggleCompleted,deleteTodo }) => {
                 onChange={() => toggleCompleted(todo.id)}
             />
             <p style={getTodoTitleStyle()}>{todo.title}</p>
-            <button style={styles.button}  onClick={()=>{deleteTodo(todo.id)}}>x</button>
+            <button style={styles.button} onClick={() => { deleteTodo(todo.id) }}>x</button>
         </div>
     )
 }
